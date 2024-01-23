@@ -35,7 +35,8 @@ canvas {
     margin-bottom: 20px;
 }
 
-.buttom__tool {
+.buttom__tool,
+.buttom__size {
     height: 45px;
     border: none;
     border-radius: 5px;
@@ -50,7 +51,8 @@ canvas {
     font-size: 1.8rem;
 }
 
-.buttom__tool:hover {
+.buttom__tool:hover,
+.buttom__size::hover {
     background-color: #f2f2f2;
 }
 
@@ -69,12 +71,28 @@ canvas {
 
 .buttom__size {
     padding: 10px;
+    height: auto;
 }
 
 .buttom__size > span {
     width: 100%;
     background-color: black;
     border-radius: 100px;
-    height: 10px;
     display: block;
+}
+
+.buttom__size[data-size="5"] > span {
+    height: 5px;
+}
+
+.buttom__size[data-size="10"] > span {
+    height: 10px;
+}
+
+.buttom__size[data-size="20"] > span {
+    height: 20px;
+}
+
+.buttom__size[data-size="30"] > span {
+    height: 30px;
 }
