@@ -8,10 +8,33 @@ const buttomClear = document.querySelector(".buttom__clear");
 
 let brushSize = 30;
 
-ctx.fillStyle = "#000";
+let isPainting = false;
+
+let activeTool = "brush";
+
+inputColor.addEventListener("change", ({ target }) => {
+    ctx.fillStyle = target.value;
+});
 
 canvas.addEventListener("mousedown", ({ clientX, clientY }) => {
     draw(clientX, clientY);
+    isPainting = true;
+
+    if (activeTool == "brush") {
+        draw(clientX, clientY);
+    }
+});
+
+canvas.addEventListener("mousemove", ({ clientX, clientY }) => {
+    if (isPainting) {
+        if (activeTool == "brush") {
+            draw(clientX, clientY);
+        }
+    }
+});
+
+canvas.addEventListener("mouseup", ({ clientX, clientY }) => {
+    isPainting = false;
 });
 
 const draw = (x, y) => {
