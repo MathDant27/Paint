@@ -6,14 +6,23 @@ const tools = document.querySelectorAll(".buttom__tool");
 const sizeButtoms = document.querySelector(".buttom__size");
 const buttomClear = document.querySelector(".buttom__clear");
 
-let brushSize = 10;
+let brushSize = 30;
 
-canvas.addEventListener("mousedown", (event) => {
-    const { clientX, clientY } = event;
+ctx.fillStyle = "#000";
+
+canvas.addEventListener("mousedown", ({ clientX, clientY }) => {
     draw(clientX, clientY);
 });
 
 const draw = (x, y) => {
-    ctx.fillStyle = "#000";
-    ctx.fillRect(x, y, brushSize, brushSize);
+    ctx.beginPath();
+
+    ctx.arc(
+        x - canvas.offsetLeft,
+        y - canvas.offsetTop,
+        brushSize / 2,
+        0,
+        2 * Math.PI
+    );
+    ctx.fill();
 };
