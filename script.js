@@ -23,12 +23,20 @@ canvas.addEventListener("mousedown", ({ clientX, clientY }) => {
     if (activeTool == "brush") {
         draw(clientX, clientY);
     }
+
+    if (activeTool == "rubber") {
+        erase(clientX, clientY);
+    }
 });
 
 canvas.addEventListener("mousemove", ({ clientX, clientY }) => {
     if (isPainting) {
         if (activeTool == "brush") {
             draw(clientX, clientY);
+        }
+
+        if (activeTool == "rubber") {
+            erase(clientX, clientY);
         }
     }
 });
@@ -67,8 +75,9 @@ const erase = (x, y) => {
 const selectTool = ({ target }) => {
     const selectTool = target.closest("buttom");
     const action = selectTool.getAttribute("data-action");
-
-    alert(action);
+    if (action) {
+        activeTool = action;
+    }
 };
 
 tools.forEach((tool) => {
